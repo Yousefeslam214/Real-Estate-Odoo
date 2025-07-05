@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="batch_processing_wizard_action" model="ir.actions.act_window">
+        <field name="name">Batch Add Products</field>
+        <field name="res_model">batch.processing.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_order_id': active_id}</field>
+    </record>
+
+    <record id="view_batch_wizard_form" model="ir.ui.view">
+        <field name="name">batch.processing.wizard.form</field>
+        <field name="model">batch.processing.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Batch Product Selection">
+                <group>
+                    <field name="order_id" invisible="1"/>
+                    <field name="product_ids" widget="many2many_tags"/>
+                    <field name="batch_reference"/>
+                    <field name="discount_type"/>
+                    <field name="discount_value"/>
+                </group>
+                <footer>
+                    <button name="apply_batch_processing" string="Apply" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

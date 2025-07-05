@@ -1,0 +1,20 @@
+{
+    'name': 'Custom Sales Module',
+    'version': '1.0',
+    'summary': 'Manage quotations, sales orders, and workflows',
+    'description': 'Advanced sales module with workflow automation',
+    'author': 'Your Name',
+    'depends': ['base', 'sale', 'mail'],
+    'data': [
+        'security/ir.model.access.csv',
+        # 'wizards/batch_wizard.xml',
+        # 'wizards/batch_wizard.xml',
+        'views/workflow_views.xml',
+        'views/sale_order_views.xml',
+        'views/batch_wizard.xml',
+        # 'views/sale_order_line_views.xml',
+        # 'data/workflow_data.xml',
+    ],
+    'installable': True,
+    'application': True,
+}

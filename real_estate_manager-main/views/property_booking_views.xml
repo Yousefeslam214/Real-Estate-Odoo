@@ -1,0 +1,61 @@
+<!-- views/property_booking_views.xml -->
+<odoo>
+    <!-- Tree View -->
+    <record id="view_property_booking_tree" model="ir.ui.view">
+        <field name="name">property.booking.tree</field>
+        <field name="model">property.booking</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="customer_id"/>
+                <field name="property_id"/>
+                <field name="booking_date"/>
+                <field name="state"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_property_booking_form" model="ir.ui.view">
+        <field name="name">property.booking.form</field>
+        <field name="model">property.booking</field>
+        <field name="arch" type="xml">
+            <form>
+                <!-- <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="btn-primary" modifiers="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="btn-secondary" modifiers="{'invisible': [('state', '=', 'cancelled')]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,cancelled"/>
+                </header> -->
+                <header>
+                    <button name="action_draft" string="Draft" type="object" class="btn-secondary" modifiers="{'invisible': [('state', '=', 'draft')]}" />
+                    <button name="action_confirm" string="Confirm" type="object" class="btn-primary" modifiers="{'invisible': [('state', '=', 'confirmed')]}" />
+                    <button name="action_cancel" string="Cancel" type="object" class="btn-danger" modifiers="{'invisible': [('state', '=', 'cancelled')]}" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,cancelled"/>
+
+                </header>
+
+                <group>
+                    <field name="customer_id"/>
+                    <field name="property_id"/>
+                    <field name="booking_date"/>
+                    <field name="note"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_manager_property_booking" model="ir.actions.act_window">
+        <field name="name">Property Bookings</field>
+        <field name="res_model">property.booking</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first property booking
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_real_estate_manager_property_booking" name="Property Bookings" parent="menu_real_estate" action="action_manager_property_booking" sequence="4"/>
+</odoo>

@@ -1,0 +1,46 @@
+<odoo>
+    <record id="workflow_rule_view_tree" model="ir.ui.view">
+        <field name="name">workflow.rule.tree</field>
+        <field name="model">custom.workflow.rule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="trigger_state"/>
+                <field name="action"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="workflow_rule_view_form" model="ir.ui.view">
+        <field name="name">workflow.rule.form</field>
+        <field name="model">custom.workflow.rule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="trigger_state"/>
+                        <field name="action"/>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Email Action" modifiers="{'invisible': [('action', '!=', 'send_email')]}">
+                            <field name="email_template_id"/>
+                        </page>
+                        <page string="Activity Action" modifiers="{'invisible': [('action', '!=', 'create_activity')]}">
+                            <field name="activity_type_id"/>
+                        </page>
+                        <page string="Document Checklist">
+                            <field name="document_template_ids" widget="many2many_tags"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <act_window id="action_workflow_rule"
+                name="Workflow Rules"
+                res_model="custom.workflow.rule"
+                view_mode="tree,form"/>
+</odoo>

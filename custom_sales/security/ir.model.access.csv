@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_custom_workflow_rule,custom.workflow.rule,model_custom_workflow_rule,,1,1,1,1
+access_batch_wizard,batch.wizard,model_batch_processing_wizard,,1,1,1,1
+
+

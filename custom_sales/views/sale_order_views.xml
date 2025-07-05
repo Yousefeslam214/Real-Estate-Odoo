@@ -1,0 +1,42 @@
+<odoo>
+    <!-- Form View -->
+    <record id="view_order_form_custom" model="ir.ui.view">
+        <field name="name">sale.order.form.custom</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Workflow State -->
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="custom_state" widget="statusbar" statusbar_visible="quotation,reserved,contract_signed,deposit_paid,full_payment,handover"/>
+                <field name="deadline_date"/>
+                <field name="payment_terms"/>
+            </xpath>
+
+            <!-- Batch Processing Button -->
+            <!-- <xpath expr="//header/button" position="before"> -->
+            <!-- <button name="%(batch_processing_wizard_action)d" string="Batch Add Products" type="action" class="oe_highlight"/> -->
+            <!-- <button name="action_batch_processing_wizard" string="Batch Add Products" type="object" class="oe_highlight"/>
+
+                <button name="update_dynamic_prices" string="Update Prices" type="object" class="oe_highlight"/>
+            </xpath> -->
+        </field>
+    </record>
+    <!-- Window Action -->
+    <record id="action_custom_sales" model="ir.actions.act_window">
+        <field name="name">Real Estate Sales</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_filter_quotations': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create your first real estate quotation!
+            </p>
+        </field>
+    </record>
+    <!-- Main Menu Item -->
+    <menuitem id="menu_custom_sales_root" name="Real Estate Sales" sequence="10" web_icon="custom_sales,static/description/icon.png" />
+
+    <!-- Submenu (if needed) -->
+    <menuitem id="menu_custom_sales" name="Sales" parent="menu_custom_sales_root" action="action_custom_sales" sequence="10" />
+</odoo>
